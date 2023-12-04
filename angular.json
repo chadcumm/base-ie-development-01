@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ie-mpage": {
+    "base-ie-development-01": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ie-mpage",
+            "outputPath": "dist/base-ie-development-01",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -75,15 +75,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ie-mpage:build",
+            "browserTarget": "base-ie-development-01:build",
             "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ie-mpage:build:production"
+              "browserTarget": "base-ie-development-01:build:production"
             },
             "development": {
-              "browserTarget": "ie-mpage:build:development"
+              "browserTarget": "base-ie-development-01:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,7 +91,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ie-mpage:build"
+            "browserTarget": "base-ie-development-01:build"
           }
         },
         "test": {
@@ -115,5 +115,5 @@
       }
     }
   },
-  "defaultProject": "ie-mpage"
+  "defaultProject": "base-ie-development-01"
 }
