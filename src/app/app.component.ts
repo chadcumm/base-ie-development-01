@@ -26,7 +26,14 @@ export class AppComponent implements OnInit {
     // Perform MPage Initialization
     setTimeout((e: any) => {
       this.mPage.setMaxInstances(2, true, 'CHART');
+      this.mPage.executeCCL ({
 
+        patientSource: [{personId: 0, encntrId: 0}],
+        person: {},
+        encounter: {},
+        problem: {}
+
+      })
       // Add your initialization code here - do not place outside setTimeout function
     }, 0);
   }
