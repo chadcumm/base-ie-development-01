@@ -1,5 +1,11 @@
-<h1 class="text-lg">base-ie-development-01</h1>
+<h1 class="text-lg">base ie development 01</h1>
+<ng-container *ngIf="!this.baseService.isLoaded('base') ">
+    <p>Gather the data from the base script.  Please wait...</p>
+</ng-container>
+<app-base-component *ngIf="this.baseService.isLoaded('base') === true"></app-base-component>
 
-<app-component-version></app-component-version>
+<app-person-info></app-person-info>
+
+<app-component-version *ngIf="this.baseService.isLoaded('base') === true"></app-component-version>
 <mpage-log-component></mpage-log-component>
 

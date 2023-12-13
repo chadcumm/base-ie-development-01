@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {mPageService} from "@clinicaloffice/clinical-office-mpage";
+import {CustomService, mPageService} from "@clinicaloffice/clinical-office-mpage";
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,11 @@ export class AppComponent implements OnInit {
 
   constructor(
     public activatedRoute: ActivatedRoute,
-    public mPage: mPageService
+    public mPage: mPageService,
+    public baseService: CustomService
   ) { }
+
+  public loading_data: boolean = false ;
 
   ngOnInit(): void {
 
@@ -26,6 +29,8 @@ export class AppComponent implements OnInit {
     // Perform MPage Initialization
     setTimeout((e: any) => {
       this.mPage.setMaxInstances(2, true, 'CHART');
+
+      // Add your initialization code here - do not place outside setTimeout function
       this.mPage.executeCCL ({
         payload: {
           patientSource: [{personId: 0, encntrId: 0}],
@@ -37,7 +42,25 @@ export class AppComponent implements OnInit {
           problem: { }
         }
       })
-      // Add your initialization code here - do not place outside setTimeout function
+
+      this.loading_data = true;
+      this.baseService.load({
+        customScript: {
+          script: [
+            {
+                name: "1cov_base_development_01:group1",
+                run: "pre",
+                id: "base",
+                parameters: ""
+              }],
+          clearPatientSource: false
+        },
+        person: {patient: true, prsnlReltn: true},
+        encounter: {aliases: true, prsnlReltn: true},
+        
+      }, undefined, (() => { this.loading_data = false}));
+
+    // Add your initialization code above here  - do not place outside setTimeout function
     }, 0);
   }
 
